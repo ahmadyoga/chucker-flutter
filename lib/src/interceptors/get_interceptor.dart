@@ -97,11 +97,4 @@ class ChuckerGetConnectInterceptor {
 
     return jsonDecode(jsonString);
   }
-
-  Future<double>? _calculateResponseSize<T>(Response<T> response) async {
-    if (response.bodyBytes != null) {
-      return (await response.bodyBytes?.length ?? 0).toDouble();
-    }
-    return 0;
-  }
 }

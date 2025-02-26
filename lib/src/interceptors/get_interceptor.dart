@@ -92,9 +92,13 @@ class ChuckerGetConnectInterceptor {
   }
 
   Future<dynamic> _processRequestBody(Stream<List<int>> bodyBytes) async {
-    // Collect all bytes and decode to a string
-    final jsonString = await utf8.decoder.bind(bodyBytes).join();
+    try {
+      // Collect all bytes and decode to a string
+      final jsonString = await utf8.decoder.bind(bodyBytes).join();
 
-    return jsonDecode(jsonString);
+      return jsonDecode(jsonString);
+    } catch (e) {
+      return null;
+    }
   }
 }
